@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { getDeliveryManagers, getOperationalManagers } from '../services/graphService'
 import { loginRequest } from '../authConfig'
 
-const ADMINS = ['natalia.dirube@go-scm.com'] // reemplazá con los emails de los admins
+const ADMINS = ['natalia.dirube@go-scm.com', 'diego.oliva@go-scm.com', 'francisco.dupou@go-scm.com'] // reemplazá con los emails de los admins
 
 export function useRole(instance, accounts) {
   const [role, setRole] = useState(null)
