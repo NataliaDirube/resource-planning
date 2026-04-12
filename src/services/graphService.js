@@ -229,3 +229,61 @@ export async function crearAsignacionConPersona(instance, accounts, loginRequest
 
   return newItem
 }
+
+// ============================================
+// AGREGAR estas funciones al final de graphService.js
+// (el archivo existente queda intacto, solo pegás esto al final)
+// ============================================
+ 
+export async function getHitosFacturacion(instance, accounts, loginRequest, proyectoId) {
+  const token = await getToken(instance, accounts, loginRequest)
+  const siteId = await getSiteId(token)
+ 
+  const url = `${GRAPH}/sites/${siteId}/lists/Hitos_Facturacion/items?expand=fields&$filter=fields/ID_Proyecto eq ${proyectoId}&$top=500&$orderby=fields/Fecha_Factura asc`
+ 
+  const res = await fetch(url, { headers: hdrs(token) })
+  const data = await res.json()
+ 
+  if (!data.value) {
+    console.error('Error hitos facturación:', data)
+    return []
+  }
+ 
+  return data.value.map(i => ({ id: i.id, ...i.fields }))
+}
+ 
+export async function getCompanias(instance, accounts, loginRequest) {
+  const token = await getToken(instance, accounts, loginRequest)
+  const siteId = await getSiteId(token)
+ 
+  // Traemos solo id y Title para el lookup
+  const url = `${GRAPH}/sites/${siteId}/lists/Compa%C3%B1ias/items?expand=fields($select=Title)&$top=500`
+ 
+  const res = await fetch(url, { headers: hdrs(token) })
+  const data = await res.json()
+ 
+  if (!data.value) {
+    console.error('Error compañías:', data)
+    return []
+  }
+ 
+  return data.value.map(i => ({ id: i.id, ...i.fields }))
+}
+ 
+export async function getClientes(instance, accounts, loginRequest) {
+  const token = await getToken(instance, accounts, loginRequest)
+  const siteId = await getSiteId(token)
+ 
+  const url = `${GRAPH}/sites/${siteId}/lists/Clientes/items?expand=fields($select=Title)&$top=500`
+ 
+  const res = await fetch(url, { headers: hdrs(token) })
+  const data = await res.json()
+ 
+  if (!data.value) {
+    console.error('Error clientes:', data)
+    return []
+  }
+ 
+  return data.value.map(i => ({ id: i.id, ...i.fields }))
+}
+ 

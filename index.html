@@ -1,10 +1,34 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>resource-planning</title>
+    <title>Resource Planning · GoSCM 2026</title>
+
+    <!-- Fuentes de GoSCM Staffing Planner -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* Reset base igual al Staffing Planner */
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        background: #f4f6f9;
+        color: #1e2a3a;
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+        font-size: 13px;
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      #root { min-height: 100vh; }
+      input[type=number] { -moz-appearance: textfield; }
+      input::-webkit-inner-spin-button,
+      input::-webkit-outer-spin-button { -webkit-appearance: none; }
+    </style>
   </head>
   <body>
     <div id="root"></div>
